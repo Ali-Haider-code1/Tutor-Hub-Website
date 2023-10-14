@@ -1,0 +1,85 @@
+/* Reset some default styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('/img/login\ bg.jpg'); /* Set your background image URL here */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: rgba(74, 157, 174, 0.8); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+    padding: 10px 20px;
+}
+#login-form input[type="text"],
+#login-form input[type="password"]
+{
+    background-color: none !important;
+    background: none !important;
+    border: none !important;
+    border-bottom: 1px solid silver !important;;
+    border-radius: 0 !important;
+    width: 300px;
+}
+#login-form input {
+    color:black;
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#login {
+    width: 100%;
+    padding: 10px;
+    background-color: #02787e;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight:bolder;
+    font-size: 18px;
+    border-radius: 25px !important; 
+}
+
+button:hover {
+    background-color: #0056b3;
+}

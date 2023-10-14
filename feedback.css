@@ -1,0 +1,72 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    background-image: url('/img/Homebg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+h2,p{
+    margin: 1em auto;
+    text-align: center;
+    margin-top: 0%;
+    color: white;
+    font-size: 30px;
+}
+form{
+    margin-top: 5px;
+    padding: 20px;
+    border-radius: 3px;
+    max-width: 450px;
+    min-width: 300px;
+    margin: 0 auto;
+    padding-bottom: 2em;
+    background: rgba(61, 149, 169, 0.9);
+}
+label {
+    display: block;
+    margin: 0.5rem 0;
+    color: white;
+  }
+  input,
+  select {
+    background: none !important;
+    margin: 2px 0 0 0;
+    outline: none;
+    width: 100%;
+    min-height: 1.6em;
+    padding: 5px 10px;
+    border: none !important;
+    border-bottom: 1px solid silver !important;;
+    border-radius: 0 !important;
+  }
+  textarea
+  {
+    width: 100%;
+    outline: none;
+    background: #f7f8f8;
+  }
+  input[type=submit]
+  {
+      background-color: #256263 !important;
+      border: none;
+      border-radius: 5px;
+      padding: 0.6rem;
+      color: white;
+      font-size: 18px;
+      font-weight:bold;
+      border-radius: 25px !important;
+      outline: none !important;
+}
+input[type=button]:hover
+{
+    cursor: pointer;
+    background-color: #78aebd !important;
+    font-size: 18px;
+    font-weight:bold;
+    color: white;
+}
+  textarea
+  {
+      margin-top: 3px;
+  }

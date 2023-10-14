@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>
+        Feed Back Form
+    </title>
+    <link rel="stylesheet" href="/feedback.css">
+</head>
+
+<body>
+
+    <form id="survey-form" action="/submit-feedback" method="POST">
+        <h2>FeedBack</h2>
+        <label id="name-label" for="name">Name
+            <input id="name" type="text" name="name" required /></label>
+
+        <label id="email-label" for="email">Email
+            <input id="email" type="email" name="email" required /></label>
+
+        <label id="Teacher-label" for="Tname">Teacher Name
+            <input id="Tname" type="text" name="Tname" required /></label>
+        <label id="Subject-name" for="Sname">Subject Name
+            <input id="Sname" type="text" name="Sname" required /></label>
+
+        <label for="comments">Any comments or suggestions?</label>
+        <textarea id="comments" rows="10" cols="20" name="comments"
+            placeholder="Enter your comment here...."></textarea>
+
+            <input type="submit" value="Submit" id="submit">
+        </form>
+
+        <script>
+            document.getElementById('submit').addEventListener('click', (event) => {
+              event.preventDefault(); // Prevent the default form submission behavior
+              const name = document.getElementById('name').value;
+              const email = document.getElementById('email').value;
+              const Tname = document.getElementById('Tname').value;
+              const Sname = document.getElementById('Sname').value;
+              const comments = document.getElementById('comments').value;
+              const feedbackData = {
+                name,
+                email,
+                Tname,
+                Sname,
+                comments
+              };
+          
+              fetch('http://localhost:3000/submit-feedback', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(feedbackData)
+              })
+                .then(response => {
+                  if (response.ok) {
+                    alert('Submitted Successfully');
+                    window.location.href = '/index.html';
+                  } else {
+                    return response.json().then(data => {
+                      console.error(data.message);
+                      alert('The Teacher or Subject Name is Incorrect');
+                    });
+                  }
+                }).catch(error => {
+                  console.error(error);
+                });
+            });
+          </script>
+
+</body>

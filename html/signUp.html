@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/signup.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/lightcase.css">
+  <link rel="stylesheet" href="assets/css/meanmenu.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/datepicker.min.css">
+  <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <title>Signup Page</title>
+</head>
+
+<body>
+  <div id="signUpBody">
+    <div id="signUpBG">
+      <div class='greenLayer'></div>
+    </div>
+    <div class="signup-form">
+      <h2>Create An Account</h2>
+      <form id="signUpform" name='signUpform'>
+        <div class='d-flex flex-row mt-5'>
+          <div class='col-6 form-floating mx-2'>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" class="form-control" required />
+          </div>
+          <div class='col-6 form-floating mx-2'>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" required />
+          </div>
+        </div>
+        <div class='form-floating mt-3 col-12 mx-2'>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required class="form-control" />
+        </div>
+        <div class='form-floating mt-3 col-12 mx-2'>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" required />
+        </div>
+        <div class="mx-2 text-danger" id="passwordValidationMessage"></div>
+        <div class='form-floating mt-3 col-12 mx-2'>
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required />
+        </div>
+        <div class="mx-2 text-danger" id="passwordMatchMessage"></div>
+        <div class="form-group form-check mt-5 mx-2">
+          <input type="checkbox" class="form-check-input" id="terms-chkbox" required />
+          <label class='' for="terms-chkbox">I agree with the terms and conditions</label>
+        </div>
+        <div class='text-center'>
+          <button id="signUp" type="button">Sign Up</button>
+        </div>
+        <div class='text-center'>
+          Already have an account? <a href="/LoginPage.html">Sign In</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.getElementById('signUp').addEventListener('click', () => {
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        document.getElementById('passwordMatchMessage').textContent = 'Passwords do not match';
+        return;
+      }
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        password
+      };
+
+      fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = '/LoginPage.html';
+          } else {
+            return response.json().then(data => {
+              console.error(data.message);
+              alert('The User Name is Alreadt Exist');
+            });
+          }
+        }).catch(error => {
+          console.error(error);
+        });
+    });
+  </script>
+
+</body>
+
+</html>

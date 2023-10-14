@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Details</title>
+    <!-- Link to your CSS file for styling -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<style>
+    .thumb img {
+        width: 500px;
+    }
+
+    body {
+        background: linear-gradient(to right, #90abb0, #418998);
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <h1>Teacher Details</h1>
+
+    <div id="teacherDetails">
+    </div>
+
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const teacherId = parseInt(getQueryParam('teacherId'));
+        fetch(`http://localhost:3000/teachers/${teacherId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+                console.log(teacherId);
+            })
+            .then(teacher => {
+                const teacherDetails = document.getElementById('teacherDetails');
+
+                teacherDetails.innerHTML = `
+                    <div class="single-expert-box">
+                        <div class="expert-box-left">
+                            <div class="thumb">
+                                <img src="assets/images/team/team-1.jpg" alt="${teacher.name}'s Image">
+                            </div>
+                            <div class="content">
+                                <h5 class="name">${teacher.name}</h5>
+                                <span class="designation">${teacher.subject}</span>
+                                <img src="assets/images/team/signature.png" alt="Signature" class="signature">
+                            </div>
+                        </div>
+                        <div class="expert-box-right">
+                            <div class="content">
+                                <p>${teacher.description}</p>
+                                <p>Email: <b><a href="mailto:${teacher.email}">${teacher.email}</a></b></p>
+                                <p>Contact Number: <b><a href="tel:${teacher.phone}">${teacher.phone}</a></b></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+</body>
+
+</html>
